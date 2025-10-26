@@ -1,3 +1,13 @@
+-- Transform ProductDetail into 1NF
+SELECT 
+    OrderID,
+    CustomerName,
+    TRIM(value) AS Product
+FROM ProductDetail
+CROSS APPLY STRING_SPLIT(Products, ',');
+
+
+
 -- Manual 1NF version for MySQL or older systems
 INSERT INTO ProductDetail_1NF (OrderID, CustomerName, Product)
 VALUES
